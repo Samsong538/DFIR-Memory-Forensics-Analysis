@@ -21,6 +21,9 @@ Initial attempts to parse kali_memory.lime using standard Volatility 3 Linux plu
 * **Root Cause:** The RAM dump contained dual kernel banner artifacts (6.1.0-15-kali-amd64 and 7.1.5), which corrupted virtual-to-physical address translation tables within Volatility's automated framework.
 * **Pivoting Strategy:** Abandoned automated virtual memory translation plugins in favor of raw physical memory carving, string extraction, and byte-offset analysis using strings, grep, dd, and xxd.
 
+![Volatility 3 Process Scan](Memoryprocessscan.png)
+*Initial Volatility 3 `psscan` execution displaying raw physical offsets and active kernel tasks.*
+
 ## 2. Investigation & Artifact Recovery
 
 ### Phase 1: Reconstructing Shell History & Process Activity
@@ -42,6 +45,9 @@ To extract the actual contents of pass.txt and inspect heap allocations surround
 ```
 grep -a -b -o "pass.txt" ~/dfir_lab/kali_memory.lime
 ```
+![Physical Byte Offsets & Directory Carving](offset1.png)
+*Extracting physical byte offsets for `pass.txt` and carving offset `363437620` to reveal home directory file artifacts.*
+
 
 ### Phase 3: Phase 3: Raw Memory Carving
 
@@ -61,6 +67,8 @@ Decoding the extracted string confirmed the cleartext payload:
 echo "aGVsbG8=" | base64 -d
 # Output: hello
 ```
+![Base64 Carving & Decoding Verification](hello1.png)
+*Hexdump carving of offset `534836115` isolating `aGVsbG8` in memory, followed by terminal decoding into cleartext `hello`.*
 
 ### Key Extracted Artifacts
 
