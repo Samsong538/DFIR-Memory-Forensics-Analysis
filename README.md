@@ -63,13 +63,16 @@ echo "aGVsbG8=" | base64 -d
 ```
 
 ### Key Extracted Artifacts
-**Artifact Category**      **Extracted Data / Value**      **Forensic Context**
-Primary Credential            aGVsbG8=                       Found in pass.txt buffers; decodes to hello
-Targeted Process              PID 4188                       Suspicious process targeted for memory dumping
-YARA Rule Target              rule.yar                       YARA rule MaliciousBase64 matching string aGVsbG8
-Target Infrastructure         rdp://192.168.7.131            Remote desktop connection target found in memory buffers
-Reconnaissance Tools          feroxbuster, hydra             Identifiers found via .hydra.restore and command execution flags
-Kernel Version                6.1.0-15-kali-amd64            Primary active kernel build structure recovered from RAM
+
+| **Artifact Category** | **Extracted Data / Value** | **Forensic Context** |
+| :--- | :--- | :--- |
+| Primary Credential | aGVsbG8= | Found in pass.txt buffers; decodes to hello |
+| Targeted Process | PID 4188 | Suspicious process targeted for memory dumping |
+| YARA Rule Target | rule.yar | YARA rule MaliciousBase64 matching string aGVsbG8= |
+| Target Infrastructure | rdp://192.168.7.131 | Remote desktop connection target found in memory buffers |
+| Reconnaissance Tools | feroxbuster, hydra | Identifiers found via .hydra.restore and command execution flags |
+| Kernel Version | 6.1.0-15-kali-amd64 | Primary active kernel build structure recovered from RAM |
+
 
 ## 4. Conclusion & Key Takeaways
 
