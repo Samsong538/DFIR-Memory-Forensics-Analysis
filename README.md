@@ -22,6 +22,7 @@ Initial attempts to parse kali_memory.lime using standard Volatility 3 Linux plu
 * **Pivoting Strategy:** Abandoned automated virtual memory translation plugins in favor of raw physical memory carving, string extraction, and byte-offset analysis using strings, grep, dd, and xxd.
 
 ![Volatility 3 Process Scan](Memoryprocessscan.png)
+
 *Initial Volatility 3 `psscan` execution displaying raw physical offsets and active kernel tasks.*
 
 ## 2. Investigation & Artifact Recovery
